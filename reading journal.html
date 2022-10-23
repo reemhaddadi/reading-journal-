@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="keywords" content="Well-Thought-Out, to-do-list, organization, study, calendar, schedule, sleep">
+    <meta name="description" content="web page perfect workplace to help your schedule">
+    <meta name="author" content="Shahad Albalawi, Reem Haddadi, Jumana Hussien, Lujain Alamri, Remas Alshehri">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Books Rating</title>
+    <!-- stars bootstrap form below--> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="icon" href="bookicon.png">
+<style>
+/*book links color*/
+a:link {
+  color: #8c4137;
+  text-decoration: none;
+}
+a:visited {
+  color: #a67d4b;
+  text-decoration: none;
+}
+a:hover {
+  color: #cd9891;
+  text-decoration: none;
+}
+/*table size*/
+table {
+  font-family: serif;
+  border-collapse: collapse;
+  width: 70%;
+  /*margin:0% 10% 0% 15%;*/
+}
+td ,th{
+  border: 1px solid #ffffff;
+  text-align: left;
+  padding: 8px; 
+}
+tr:nth-child(even) {
+  background-color: #d0e3cc;
+}
+/*.form-group{
+  margin:0% 20% 0% 15%;
+}*/
+
+/*STARS*/
+.stars-outer {
+  position: relative;
+  display: inline-block;
+}
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+.stars-outer::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: fontAwesome;
+  font-weight: 900;
+  color: #ccc;
+}
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: fontAwesome;
+  font-weight: 900;
+  color: #f8ce0b;
+}
+/*Submit button*/
+.button {
+  background-color: #a67d4b;
+  border: none;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  margin: 0.3px 2px;
+  cursor: pointer;
+}
+/*alert button*/
+.Cbutton {
+  border-radius: 17px;
+  }
+/*header*/
+  header {
+  margin:0;
+  background-color: #f7ffdd;
+  padding-bottom: 2%;
+  box-shadow: 10px 7px 15px #ccc;
+  border:1px solid #f7ffdd;
+  border-radius: 15px;
+  width:100%;
+  
+}
+/*footer*/
+  footer {
+    margin-top: 100px;
+    background-color: #f7ffdd;
+    border: 1px solid  #d0e3cc ;
+    height: 50px;
+    box-shadow: 5px 7px 15px #ccc;
+    text-align: center;
+    color: #8c4137;
+    padding-top: 10px;
+  }
+/*summry button*/
+details p{
+  text-align: center;
+}
+/*menu*/
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #c3a683;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+.sidenav a{
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #a67d4b;
+    display:block;
+    transition: 0.3s;
+  }
+.sidenav .closebtn{
+    position: absolute;
+    color:#8c4137;
+    top:0;
+    cursor: pointer;
+    right:25px;
+    font-size: 36px;
+    margin-left: 50px;
+    text-decoration: none;
+}
+.sidenav .active{
+    color: #8c4137
+}
+.sidenav :hover {
+    color: #fefefe;
+}
+.form-control{
+  font-weight: bold;
+  color:#a67d4b;
+}
+</style>
+</head>
+<body  style="background: #ffffff";>
+  <!--Header+menu--> 
+  <header> 
+  <div style="font-family:serif;" id="mySidenav" class="sidenav">
+    <a class="closebtn" onclick="closeNav()">&times;</a>
+    <b><a href="home.html">Home</a></b>
+    <b><a href="todolist.html">To Do List</a></b>
+    <b> <a href="calendarOct.html">Calender</a></b>
+    <b><a href="reading journal.html" class="active">Reading</a> </b>
+    <b> <a href="sleep.html">Sleep</a></b>
+    <b> <a href="study.html">Study Hours</a></b>
+  </div>
+  <span style="font-size:30px;cursor:pointer; color: #8c4137;"  onclick="openNav()">&#9776; </span>
+    <h1 style="color:#8c4137 ;font-family:serif;font-size:200%;padding: 5% 0% 3% 5%;"><b>Reading Journal</b></h1> 
+  </header>
+ <!--selector-->
+ <div class="container mt-3">
+    <div class="form-group">
+      <select style="font-family:serif;color:#8c4137 ;" id="book-select" class="form-control custom-select">
+        <option value="0" disabled selected> Choose Your Next Read</option>
+                    <option value="runner">1. The Kite Runner By Khaled Hosseini</option>
+                    <option value="silent"> 2. The Silent Patient by Alex Michaelides </option>
+                    <option value="solitude">3. One Hundred Years of Solitude By Gabriel García Márquez</option>
+                    <option value="suns">4. A Thousand Splendid Suns By Khaled Hosseini</option>
+                    <option value="mind"> 5. An Unquiet Mind: A Memoir of Moods and Madness By Kay Redfield Jamison </option>
+                    <option value="talk"> 6. Maybe You Should Talk to Someone By Lori Gottlieb </option>
+                    <option value="Blinding">7. This Blinding Absence of Light By Tahar Ben Jelloun </option>
+                    <option value="shadow"> 8. The Shadow of the Wind By Carlos Ruiz Zafón </option>
+                    <option value="arabian">9. The Arabian Nights</option>
+      </select>
+  </div>
+
+    <!-- under the selector-->
+    <div class="form-group">
+      <input style="font-family:serif;" type="number" id="rating-control" class="form-control" step="0.1" max="5" placeholder="Rate 1 - 5" disabled>
+    </div>
+
+    <!-- table content-->
+    <table class="table table-striped ">
+      <thead>
+        <tr style="color:#8c4137">
+          <th>Titles</th>
+          <th>Rating</th>
+          <th >Reviews</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="runner">
+          <td><b><a href="https://www.goodreads.com/book/show/77203.The_Kite_Runner" target="_blank"> The Kite Runner</a></b>
+            <details>
+              <summary style="color:#8c4137"><b><small>Short Brief</small></b></summary>
+              <p style="color:#8c4137"><small>"1970s Afghanistan: Twelve-year-old Amir is desperate to win the local kite-fighting 
+                tournament and his loyal friend Hassan promises to help him. But neither of the boys can foresee what would happen to 
+                Hassan that afternoon, an event that is to shatter their lives. After the Russians invade and the family is forced to 
+                flee to America, Amir realises that one day he must return to an Afghanistan under Taliban rule to find the one thing
+                 that his new world cannot grant him: redemption."</small></p>
+            </details></td>
+          <td>
+            <div class="stars-outer">
+              <div class="stars-inner"></div>
+            </div>
+            <span class="number-rating"></span>
+          </td>
+          <td>
+            <form>
+              <div>
+              <textarea name="comments" id="comments" placeholder="write a comment" style="font-family:serif;font-size:20%;"></textarea>
+              </div>
+              <button class="button Cbutton" onclick="alert('Thank You! Well-Thought-Out Team Appreciate your review.')">Submit</button>
+            </form>
+           </td>
+        </tr>
+        <tr class="silent">
+          <td><b><a href="https://www.goodreads.com/book/show/40097951-the-silent-patient?ac=1&from_search=true&qid=3GipMedWWR&rank=1" target="_blank"> The Silent Patient</a></b>
+            <details>
+              <summary style="color:#8c4137"><b><small>Short Brief</small> </b></summary>
+            <p style="color:#8c4137"><small>"The Silent Patient is a shocking psychological thriller of a woman
+               act of violence against her husband and of the therapist obsessed with uncovering her motive."</small></p>
+          </details></td>
+          <td>
+            <div class="stars-outer">
+              <div class="stars-inner"></div>
+            </div>
+            <span class="number-rating"></span>
+          </td>
+          <td>
+            <form>
+              <div>
+              <textarea name="comments" id="comments" placeholder="write a comment"  style="font-family:serif;font-size:20%;"></textarea>
+              </div>
+              <button class="button Cbutton" onclick="alert('Thank You! Well-Thought-Out Team Appreciate your review.')">Submit</button>
+              </form>
+          </td>
+        </tr>
+        <tr class="solitude">
+          <td><b><a href="https://www.goodreads.com/book/show/320.One_Hundred_Years_of_Solitude?ac=1&from_search=true&qid=dIJvi1ebpi&rank=1" target="_blank">One Hundred Years of Solitude</a></b>
+            <details>
+              <summary style="color:#8c4137"><b><small>Short Brief</small> </b></summary>
+            <p style="color:#8c4137"><small>"The brilliant, bestselling, landmark novel that tells the story of the Buendia family, 
+              and chronicles the irreconcilable conflict between the desire for solitude and the need for love in rich, 
+              imaginative prose that has come to define an entire genre known as "magical realism."</small></p>
+          </details></td>
+          <td>
+            <div class="stars-outer">
+              <div class="stars-inner"></div>
+            </div>
+            <span class="number-rating"></span>
+          </td>
+          <td>
+            <form>
+              <div>
+              <textarea name="comments" id="comments" placeholder="write a comment" style="font-family:serif;font-size:20%;"></textarea>
+              </div>
+              <button class="button Cbutton" onclick="alert('Thank You! Well-Thought-Out Team Appreciate your review.')">Submit</button>
+              </form>
+          </td>
+        </tr>
+        <tr class="suns">
+          <td><b><a href="https://www.goodreads.com/book/show/128029.A_Thousand_Splendid_Suns?ac=1&from_search=true&qid=Qk6AHaVSNk&rank=1" target="_blank"> A Thousand Splendid Suns</a></b>
+            <details>
+              <summary style="color:#8c4137"><b><small>Short Brief</small> </b></summary>
+            <p style="color:#8c4137"><small>"A Thousand Splendid Suns" is a portrait of a wounded country and a story of family and friendship,
+               of an unforgiving time, an unlikely bond, and an indestructible love."</small></p>
+          </details></td>
+          <td>
+            <div class="stars-outer">
+              <div class="stars-inner"></div>
+            </div>
+            <span class="number-rating"></span>
+          </td>
+          <td>
+            <form>
+              <div>
+              <textarea name="comments" id="comments" placeholder="write a comment" style="font-family:serif;font-size:20%;"></textarea>
+              </div>
+              <button class="button Cbutton" onclick="alert('Thank You! Well-Thought-Out Team Appreciate your review.')">Submit</button>
+              </form>
+          </td>
+        </tr>
+        <tr class="mind">
+          <td><b><a href="https://www.goodreads.com/book/show/361459.An_Unquiet_Mind?ac=1&from_search=true&qid=wnLAKavQu3&rank=1" target="_blank"> An Unquiet Mind: A Memoir of Moods and Madness</a></b>
+            <details>
+              <summary style="color:#8c4137"><b><small>Short Brief</small> </b></summary>
+            <p style="color:#8c4137"><small> "The personal memoir of a manic depressive and an authority on 
+              the subject describes the onset of the illness during her teenage years and her determined journey
+               through the realm of available treatments."</small></p>
+          </details></td>
+          <td>
+            <div class="stars-outer">
+              <div class="stars-inner"></div>
+            </div>
+            <span class="number-rating"></span>
+          </td>
+          <td>
+            <form">
+              <div>
+              <textarea name="comments" id="comments" placeholder="write a comment"  style="font-family:serif;font-size:20%;"></textarea>
+              </div>
+              <button class="button Cbutton" onclick="alert('Thank You! Well-Thought-Out Team Appreciate your review.')">Submit</button>
+              </form>
+          </td>
+        </tr>
+        <tr class="talk">
+          <td><b><a href="https://www.goodreads.com/book/show/37570546-maybe-you-should-talk-to-someone?from_search=true&from_srp=true&qid=rw79TVPkme&rank=1"target="_blank"> Maybe You Should Talk to Someone</a></b>
+            <details>
+              <summary style="color:#8c4137"><b><small>Short Brief</small></b></summary>
+            <p style="color:#8c4137"><small>"Maybe You Should Talk to Someone is revolutionary in it's candor,
+               offering a deeply personal yet universal tour of our hearts and minds and providing the rarest
+                of gifts: a boldly revealing portrait of what it means to be human, and a disarmingly funny 
+                and illuminating account of our own mysterious lives and our power to transform them."</small></p>
+          </details></td>
+          <td>
+            <div class="stars-outer">
+              <div class="stars-inner"></div>
+            </div>
+            <span class="number-rating"></span>
+          </td>
+          <td>
+            <form>
+              <div>
+              <textarea name="comments" id="comments" placeholder="write a comment" style="font-family:serif;font-size:20%;"></textarea>
+              </div>
+              <button class="button Cbutton" onclick="alert('Thank You! Well-Thought-Out Team Appreciate your review.')">Submit</button>
+              </form>
+          </td>
+        </tr>
+        <tr class="Blinding">
+          <td><b><a href="https://www.goodreads.com/book/show/20870778-this-blinding-absence-of-light?from_search=true&from_srp=true&qid=CdE7w4QNau&rank=1"target="_blank"> This Blinding Absence of Light</a></b>
+            <details>
+              <summary style="color:#8c4137"><b><small>Short Brief</small> </b></summary>
+            <p style="color:#8c4137"><small>"A shocking story set in Morocco's desert concentration camps, 
+              from the Prix Goncourt-winning novelist. An immediate and critically acclaimed bestseller in France, 
+              This Blinding Absence of Light is Tahar Ben Jelloun's crafting of a horrific 
+              real-life narrative into a work of fiction."</small></p>
+          </details></td>
+          <td>
+            <div class="stars-outer">
+              <div class="stars-inner"></div>
+            </div>
+            <span class="number-rating"></span>
+          </td>
+          <td>
+            <form>
+              <div>
+              <textarea name="comments" placeholder="write a comment" id="comments"  style="font-family:serif;font-size:20%;"></textarea>
+              </div>
+              <button class="button Cbutton" onclick="alert('Thank You! Well-Thought-Out Team Appreciate your review.')">Submit</button>
+          </td>
+        </tr>
+        <tr class="shadow">
+          <td><b><a href="https://www.goodreads.com/book/show/1232.The_Shadow_of_the_Wind?from_search=true&from_srp=true&qid=0LGszdxCjg&rank=1" target="_blank"> The shadow of the Wind</a></b>
+            <details>
+              <summary style="color:#8c4137"><b><small>Short Brief</small> </b></summary>
+            <p style="color:#8c4137"> <small>"Barcelona, 1945: A city slowly heals from its war wounds, and Daniel,
+               an antiquarian book dealer's son who mourns the loss of his mother,
+                finds solace in a mysterious book entitled The Shadow of the Wind, 
+                by one Julian Carax. But when he sets out to find the author's other 
+                works, he makes a shocking discovery : someone has been
+                 systematically destroying every copy of every book Carax has written."</small></p>
+          </details></td>
+          <td>
+            <div class="stars-outer">
+              <div class="stars-inner"></div>
+            </div>
+            <span class="number-rating"></span>
+          </td>
+          <td>
+            <form>
+              <div>
+              <textarea name="comments" placeholder="write a comment" id="comments"  style="font-family:serif;font-size:20%;"></textarea>
+              </div>
+              <button class="button Cbutton" onclick="alert('Thank You! Well-Thought-Out Team Appreciate your review.')">Submit</button>
+              </form>
+          </td>
+        </tr>
+        <tr class="arabian">
+          <td><b><a href="https://www.goodreads.com/book/show/93101.The_Arabian_Nights?from_search=true&from_srp=true&qid=KjfL0mKInQ&rank=1" target="_blank"> The Arabian Nights</a></b>
+          <details>
+            <summary style="color:#8c4137"><b><small>Short Brief</small></b></summary>
+            <p style="color:#8c4137"><small>"The tales of told by Shahrazad over a thousand and one nights to delay her execution by 
+              the vengeful King Shahriyar have become among the most popular in both Eastern and Western literature, But despite 
+              their imaginative extravagance, the Tales are anchored to everyday life by their realism, providing a full and 
+              intimate record of medieval Islam."</small></p>
+          </details></td>
+          <td>
+            <div class="stars-outer">
+              <div class="stars-inner"></div>
+            </div>
+            <span class="number-rating"></span>
+          </td>
+          <td>
+            <form>
+              <div>
+              <textarea name="comments" placeholder="write a comment" id="comments" style="font-family:serif;font-size:20%;"></textarea>
+              </div>
+              <button class="button Cbutton" onclick="alert('Thank You! Well-Thought-Out Team Appreciate your review.')">Submit</button>
+              </form>
+          </td>
+        </tr>
+       </tbody>
+    </table>
+  </div>
+  <footer style="font-family:serif">
+    <b>"The World Belongs To Those Who Reads"</b>
+  </footer>
+  <script>
+//opening and closing menu functions
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+  // Initial Ratings 
+    const ratings = {
+      runner: 4.33,
+      silent: 4.17,
+      solitude: 4.10,
+      suns: 4.41,
+      mind: 4.04,
+      talk:4.38,
+      Blinding:4.28,
+      shadow:4.29,
+      arabian:4.05
+    }
+
+// Total Stars
+  const starsTotal = 5;
+
+// Run getRatings when DOM loads
+  document.addEventListener('DOMContentLoaded', getRatings);
+
+// Form Elements
+  const bookSelect = document.getElementById('book-select');
+  const ratingControl = document.getElementById('rating-control');
+
+// Init product
+let product;
+// book select change
+  bookSelect.addEventListener('change', (e) => {
+    product = e.target.value;
+  // Enable rating control
+    ratingControl.disabled = false;
+    ratingControl.value = ratings[product];
+    });
+
+// Rating control change
+  ratingControl.addEventListener('change', (e) => {
+  const rating = e.target.value;
+
+// Make sure 5 or under
+   if (rating > 5) {
+        alert('Please rate 1 - 5');
+      return;
+      }
+
+// Change rating
+ratings[product] = rating;
+    getRatings();
+    });
+
+// Get ratings
+  function getRatings() {
+    for (let rating in ratings) {
+      // Get percentage
+      const starPercentage = (ratings[rating] / starsTotal) * 100;
+
+      // Round to nearest 10
+      const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+
+      // Set width of stars-inner to percentage
+      document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded;
+}
+    }
+  </script>
+</body>
+</html>
